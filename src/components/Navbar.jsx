@@ -1,9 +1,17 @@
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function Navbar() {
+  const nav = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    nav("/login");
+  }
   return (
     <>
       <div className="navbar bg-error px-8 flex justify-between">
         <div className="flex">
-          <a className="btn text-xl btn-error hover:bg-warning hover:text-black">Sizzle & Stir</a>
+          <Link to="/" className="btn text-xl btn-error hover:bg-warning hover:text-black">Sizzle & Stir</Link>
         </div>
 
         <div className="flex justify-center">
@@ -35,10 +43,10 @@ export default function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between text-black hover:text-error">My Favorites</a>
+                <Link to="/favorites" className="justify-between text-black hover:text-error">My Favorites</Link>
               </li>
               <li>
-                <a className="text-black hover:text-error">Logout</a>
+                <a className="text-black hover:text-error" onClick={handleLogout}>Logout</a>
               </li>
             </ul>
           </div>

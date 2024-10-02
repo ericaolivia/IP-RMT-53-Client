@@ -8,6 +8,7 @@ import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from './pages/Login.jsx';
 import Homepage from './pages/Homepage.jsx';
+import Favorites from './pages/Favorites.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
+  },
+  {
+    path: "/favorites",
+    element: <Favorites />,
   },
 ]);
 
