@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link to="/" className="btn text-xl btn-error hover:bg-warning hover:text-black">Sizzle & Stir</Link>
         </div>
 
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <div className="form-control">
             <input
               type="text"
@@ -22,7 +22,7 @@ export default function Navbar() {
               className="input input-bordered w-64"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="flex gap-2">
           <div className="dropdown dropdown-end">
@@ -42,6 +42,9 @@ export default function Navbar() {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
+              <li>
+                <Link to="/profile" className="justify-between text-black hover:text-error">My Profile</Link>
+              </li>
               <li>
                 <Link to="/favorites" className="justify-between text-black hover:text-error">My Favorites</Link>
               </li>

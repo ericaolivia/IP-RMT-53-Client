@@ -18,7 +18,7 @@ export default function Login() {
         }
       })
       console.log(data);
-      localStorage.setItem("access_token",response.data.access_token);
+      localStorage.setItem("access_token",data.access_token);
       nav("/");
     } catch (err){
       console.log(err);
