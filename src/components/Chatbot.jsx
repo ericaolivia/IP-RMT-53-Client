@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
+require('dotenv').config();
 
-const geminiApiKey = "AIzaSyA5JJb0qsdWpIKQwJA5lbDY2GFkkn5U6vs"; 
+const geminiApiKey = process.env.GEMINI_API_KEY; 
 
 const geminiClient = axios.create({
   headers: {
