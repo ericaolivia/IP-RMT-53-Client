@@ -1,30 +1,42 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Chatbot from "./Chatbot.jsx";
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/slices/userSlice";
 
 export default function Navbar() {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const fetchUserProfile = async () => {
+    const userProfile = await getUserProfileFromAPI();
+    dispatch(setUser({ imageUrl: userProfile.imageUrl }));
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     nav("/login");
-  }
+  };
   return (
     <>
       <div className="navbar bg-error px-8 flex justify-between">
         <div className="flex">
-          <Link to="/" className="btn text-xl btn-error hover:bg-warning hover:text-black">Sizzle & Stir</Link>
+          <Link
+            to="/"
+            className="btn text-xl btn-error hover:bg-warning hover:text-black"
+          >
+            Sizzle & Stir
+          </Link>
         </div>
 
-        {/* <div className="flex justify-center">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered w-64"
-            />
-          </div>
-        </div> */}
+        <div className="flex gap-2 items-center">
+          <Link
+            to="/chatbot"
+            className="btn text-xl btn-error hover:bg-warning hover:text-black"
+          >
+            Ask Recipe
+          </Link>
 
-        <div className="flex gap-2">
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -43,13 +55,28 @@ export default function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link to="/profile" className="justify-between text-black hover:text-error">My Profile</Link>
+                <Link
+                  to="/profile"
+                  className="justify-between text-black hover:text-error"
+                >
+                  My Profile
+                </Link>
               </li>
               <li>
-                <Link to="/favorites" className="justify-between text-black hover:text-error">My Favorites</Link>
+                <Link
+                  to="/favorites"
+                  className="justify-between text-black hover:text-error"
+                >
+                  My Favorites
+                </Link>
               </li>
               <li>
-                <a className="text-black hover:text-error" onClick={handleLogout}>Logout</a>
+                <a
+                  className="text-black hover:text-error"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </a>
               </li>
             </ul>
           </div>

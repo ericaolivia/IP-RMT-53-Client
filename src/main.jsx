@@ -19,6 +19,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Profile.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
+import RecipeDetail from "./pages/RecipeDetail.jsx";
+import ChatbotPage from "./pages/ChatbotPage.jsx";
 
 const isLoggedIn = () => {
   const token = localStorage.getItem("access_token");
@@ -47,6 +49,11 @@ const router = createBrowserRouter([
     },
   },
   {
+    path: "/chatbot",
+    element: <ChatbotPage />,
+    loader: isLoggedIn,
+  },
+  {
     path: "/",
     element: <Homepage />,
     loader: isLoggedIn,
@@ -59,6 +66,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+    loader: isLoggedIn,
+  },
+  {
+    path: "/detail/:id",
+    element: <RecipeDetail />,
     loader: isLoggedIn,
   },
 ]);
