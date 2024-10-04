@@ -76,7 +76,7 @@ export default function Homepage() {
       <div className="flex justify-center py-6">
         {canLoadMore && !loading && (
           <button
-            className="btn btn-primary px-6 py-2 text-sm md:text-base w-full md:w-auto"
+            className="btn btn-error px-6 py-2 text-sm md:text-base w-full md:w-auto"
             onClick={() => fetchRecipes(offset)}
           >
             Show More
