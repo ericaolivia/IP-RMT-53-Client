@@ -19,7 +19,7 @@ export const fetchRecipeDetail = createAsyncThunk(
     // const response = await axios.get(`/api/recipes/detail/${id}`);
     const response = await axios({
       method: 'get',
-      url: `/api/recipes/detail/${id}`,
+      url: `/detail/${id}`,
       headers:{
         Authorization: `Bearer ${localStorage.getItem("access_token")}`
       }
