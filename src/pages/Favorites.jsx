@@ -8,31 +8,31 @@ export default function Favorites() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        // const response = await axios.get(`/favorite`, {
-        //   headers: {
-        //     Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        //   }
-        // });
-        const response = await axios({
-            method: 'get',
-            url: `/favorite`,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
-        })
-        console.log(response.data);
-        setFavorites(response.data); 
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError('Failed to load favorites');
-        setLoading(false);
-      }
-    };
+  const fetchFavorites = async () => {
+    try {
+      // const response = await axios.get(`/favorite`, {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem('access_token')}`
+      //   }
+      // });
+      const response = await axios({
+          method: 'get',
+          url: `/favorite`,
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      console.log(response.data);
+      setFavorites(response.data); 
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to load favorites');
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchFavorites();
   }, []);
 
@@ -56,6 +56,7 @@ export default function Favorites() {
                 rounded={true}
                 btnLeft={"See Detail"}
                 btnRight={"Delete"}
+                fetchFavorites={fetchFavorites}
               />
             ))
           ) : (
