@@ -52,30 +52,40 @@ export default function Homepage() {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <Hero targetRef={targetRef}/>
+      <Hero targetRef={targetRef} />
       <Carousel />
-      <div ref={targetRef} className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full px-10 py-10">
-        <h1 className="text-left">Explore Recipes</h1>
-        {recipes.length > 0 && recipes.map((r,i)=>{
-          return(
-            <Card key={i} id={r.id} rounded={false} btnLeft={"See Detail"} btnRight={"Add to Favorites"} title={r.title} imageUrl={r.image} summary={r.summary}/>
-          )
-        })}
+      <div ref={targetRef} className="w-full px-6 md:px-10 py-6 md:py-10">
+        <h1 className="text-2xl md:text-3xl font-bold text-left mb-4">Explore Recipes</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {recipes.length > 0 && recipes.map((r, i) => (
+            <Card
+            className="flex justify-center items-center"
+              key={i}
+              id={r.id}
+              rounded={false}
+              btnLeft={"See Detail"}
+              btnRight={"Add to Favorites"}
+              title={r.title}
+              imageUrl={r.image}
+              summary={r.summary}
+            />
+          ))}
+        </div>
       </div>
-
+  
       <div className="flex justify-center py-6">
         {canLoadMore && !loading && (
           <button
-            className="btn btn-primary"
-            onClick={() => fetchRecipes(offset)} 
+            className="btn btn-primary px-6 py-2 text-sm md:text-base w-full md:w-auto"
+            onClick={() => fetchRecipes(offset)}
           >
             Show More
           </button>
         )}
         {loading && <p>Loading...</p>}
       </div>
-
+  
       {/* <Footer /> */}
     </div>
-  );
+  );  
 }
