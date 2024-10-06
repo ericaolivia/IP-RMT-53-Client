@@ -10,7 +10,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const nav = useNavigate();
 
-  async function handleSubmit(){
+  async function handleSubmit(e){
+    e.preventDefault();
     try{
       const response = await axios({
         method: "post",
