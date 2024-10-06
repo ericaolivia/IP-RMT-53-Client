@@ -1,6 +1,32 @@
 import { Link } from "react-router-dom";
+import axios from "../utils/request";
+import { useState } from "react";
+import error from "../utils/error";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const nav = useNavigate();
+
+  async function handleSubmit(){
+    try{
+      const response = await axios({
+        method: "post",
+        url: "/register",
+        data:{
+          name,
+          email,
+          password
+        }
+      });
+      nav("/login");
+    } catch (err){
+      console.log(err);
+      error(err.response?.data?.message || err.message);
+    }
+  }
   return (
     <>
       <section className="bg-white">
@@ -20,18 +46,18 @@ export default function Register() {
               <p className="mt-4 leading-relaxed text-gray-500">
                 Join us to uncover blissful taste that is suitable for you!
               </p>
-              <form className="mt-8 flex flex-col w-full">
+              <form className="mt-8 flex flex-col w-full" onSubmit={handleSubmit}>
                 <label className="input input-bordered input-error flex items-center gap-2 my-1">
                   Name
-                  <input type="text" className="grow" />
+                  <input type="text" className="grow" value={name} onChange={(e)=>{setName(e.target.value)}}/>
                 </label>
                 <label className="input input-bordered input-error flex items-center gap-2 my-1">
                   Email
-                  <input type="text" className="grow" />
+                  <input type="text" className="grow" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                 </label>
                 <label className="input input-bordered input-error flex items-center gap-2 my-1">
                   Password
-                  <input type="text" className="grow" />
+                  <input type="text" className="grow" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                 </label>
                 <div className="col-span-6 m-4">
                   <p className="text-sm text-gray-500">
